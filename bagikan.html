@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undang Teman</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+    font-family: Arial, sans-serif;
+    background:#292d3c;
+    color:#fff;
+    min-height:100%;
+    padding-bottom:20px;
+}
+
+/* HEADER */
+.header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:12px 0;
+    width:100%;
+    background:#1e2230;
+    position:relative;
+    color:#c1f52b;
+    font-weight:bold;
+    font-size:18px;
+    border-bottom:2px solid #1e2230;
+}
+.header .back-btn { 
+    position:absolute; 
+    left:15px; 
+    font-size:22px; 
+    color:#c1f52b; 
+    text-decoration:none; 
+}
+
+/* BANNER FULL */
+.banner img {
+    width:100%;
+    height:auto;
+    object-fit:cover;
+    display:block;
+}
+
+/* CONTAINER */
+.container {
+    background:#292d3c;
+    border-radius:20px 20px 0 0;
+    margin-top:-40px;
+    padding:20px;
+    position: relative;
+    z-index:1;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow:0 -4px 10px rgba(0,0,0,0.2);
+}
+
+/* TEAM COMMISSION */
+.team-commission {
+    background:#1c1f2b;
+    border-radius:12px;
+    padding:15px 20px;
+    margin-bottom:20px;
+    text-align:center;
+}
+.team-commission h3 {
+    color:#c1f52b;
+    margin-bottom:10px;
+    font-size:16px;
+}
+.levels {
+    display:flex;
+    justify-content:space-around;
+    margin-top:10px;
+}
+.level {
+    background:#292d3c;
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:13px;
+    text-align:center;
+}
+.level span {
+    display:block;
+    color:#c1f52b;
+    font-weight:bold;
+    margin-top:4px;
+}
+
+/* INVITE SECTION */
+.invite-section {
+    background:#1c1f2b;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:20px;
+}
+.invite-section h3 {
+    color:#c1f52b;
+    margin-bottom:10px;
+}
+.inactive-msg {
+    color:#aaa; 
+    font-size:13px; 
+    margin-top:10px;
+    line-height:1.4;
+}
+
+/* AKTIVITAS + TASK */
+.activity-section {
+    margin-bottom: 20px;
+}
+.activity-section h2 {
+    color:#c1f52b;
+    font-size:16px;
+    margin-bottom:8px;
+}
+.activity-section p {
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:15px;
+    line-height:1.4;
+}
+.task-card {
+    background:#1c1f2b;
+    border-radius:12px;
+    padding:15px 20px;
+    margin-bottom:12px;
+}
+.task-description {
+    font-size:0.9em;
+    color:#aaa;
+    margin-bottom:10px;
+}
+.task-progress {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.progress-bar-container {
+    flex-grow:1;
+    background:#2a2d42;
+    border-radius:10px;
+    height:12px;
+    position:relative;
+    margin-right:15px;
+    overflow:hidden;
+}
+.progress-bar {
+    height:100%;
+    width:0%;
+    background:#c1f52b;
+    transition: width 1s ease;
+}
+.progress-text {
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:0.8em;
+    color:#fff;
+}
+.claim-button {
+    background:#c1f52b;
+    color:black;
+    padding:6px 12px;
+    border:none;
+    border-radius:20px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+    font-size:12px;
+}
+.claim-button:disabled {
+    background:#555;
+    cursor:not-allowed;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <a href="profil.html" class="back-btn">&#8592;</a>
+    Undang Teman
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+    <img src="plan7.jpg" alt="Banner Undang Teman">
+</div>
+
+<div class="container">
+    <!-- TEAM COMMISSION -->
+    <div class="team-commission">
+        <h3>Komisi Tim</h3>
+        <div class="levels">
+            <div class="level">Level 1 <span>15%</span></div>
+            <div class="level">Level 2 <span>4%</span></div>
+            <div class="level">Level 3 <span>2%</span></div>
+            <div class="level">Level 4 <span>1%</span></div>
+        </div>
+    </div>
+
+    <!-- INVITE SECTION -->
+    <div class="invite-section">
+        <h3>Tautan Undangan</h3>
+        <p class="inactive-msg" id="inactiveMsg">
+            Silahkan aktifkan akun Anda dan beli produk investasi terlebih dahulu untuk mendapatkan hak mengundang teman. 
+            Setelah itu, tautan undangan akan tersedia di sini.
+        </p>
+    </div>
+
+    <!-- AKTIVITAS -->
+    <div class="activity-section">
+        <h2>Aktivitas</h2>
+        <p>Ketika jumlah total investasi bawahan Anda mencapai nilai berikut, Anda dapat menerima hadiah yang sesuai:</p>
+
+        <!-- Task Cards 1–6 -->
+        <div class="task-card">
+            <div class="task-description">1. Undang bawahan untuk berinvestasi <strong>Rp300.000</strong> → hadiah <strong>Rp30.000</strong></div>
+            <div class="task-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width:0%"></div>
+                    <span class="progress-text">Rp0 / Rp300.000</span>
+                </div>
+                <button class="claim-button" disabled>Klaim</button>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-description">2. Undang bawahan untuk berinvestasi <strong>Rp1.800.000</strong> → hadiah <strong>Rp180.000</strong></div>
+            <div class="task-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width:0%"></div>
+                    <span class="progress-text">Rp0 / Rp1.800.000</span>
+                </div>
+                <button class="claim-button" disabled>Klaim</button>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-description">3. Undang bawahan untuk berinvestasi <strong>Rp6.800.000</strong> → hadiah <strong>Rp680.000</strong></div>
+            <div class="task-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width:0%"></div>
+                    <span class="progress-text">Rp0 / Rp6.800.000</span>
+                </div>
+                <button class="claim-button" disabled>Klaim</button>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-description">4. Undang bawahan untuk berinvestasi <strong>Rp10.600.000</strong> → hadiah <strong>Rp1.060.000</strong></div>
+            <div class="task-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width:0%"></div>
+                    <span class="progress-text">Rp0 / Rp10.600.000</span>
+                </div>
+                <button class="claim-button" disabled>Klaim</button>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-description">5. Undang bawahan untuk berinvestasi <strong>Rp20.000.000</strong> → hadiah <strong>Rp2.000.000</strong></div>
+            <div class="task-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width:0%"></div>
+                    <span class="progress-text">Rp0 / Rp20.000.000</span>
+                </div>
+                <button class="claim-button" disabled>Klaim</button>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-description">6. Undang bawahan untuk berinvestasi <strong>Rp35.000.000</strong> → hadiah <strong>Rp3.500.000</strong></div>
+            <div class="task-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width:0%"></div>
+                    <span class="progress-text">Rp0 / Rp35.000.000</span>
+                </div>
+                <button class="claim-button" disabled>Klaim</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

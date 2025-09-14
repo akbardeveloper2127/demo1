@@ -1,0 +1,279 @@
+/* RESET */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  font-family: Arial, sans-serif;
+  background:#292d3c;
+  color:#fff;
+  padding-bottom:80px;
+}
+/* HEADER */
+.header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:12px 0;              /* rapat, sama dengan deposit */
+    width:100%;
+    background:#1e2230;
+    position:relative;
+    color:#c1f52b;
+    font-weight:bold;
+    font-size:17px;
+    border-bottom:2px solid #1e2230; /* biar konsisten clean */
+}
+header .back-btn { 
+  position: absolute; 
+  left: 15px; 
+  font-size: 24px; 
+  color: #000; 
+  text-decoration: none; 
+}
+
+/* WRAPPER UTAMA */
+.wrapper {
+  padding: 0 8px;
+}
+
+/* SLIDER */
+.slider {
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  width:100%;
+  height:180px;
+  margin:12px 0;
+}
+.slides {
+  display:flex;
+  transition:transform 0.5s ease-in-out;
+}
+.slides img {
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+.dots {
+  position:absolute;
+  bottom:8px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:6px;
+}
+.dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#aaa;
+  cursor:pointer;
+}
+.dot.active { background:#c1f52b; }
+
+.testimonial-container {
+  position: relative;
+  overflow: hidden;
+  height: 40px; /* tinggi box */
+  background: #c1f52b; /* bisa diganti warna sesuai tema */
+  color: #000;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.testimonial-item {
+  position: absolute;
+  white-space: nowrap;
+  left: 100%; /* start di kanan */
+  top: 0;
+  transition: left 0.8s linear; /* durasi animasi */
+}
+
+/* MENU AKSI */
+.menu-aksi {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 15px 0;
+}
+.menu-item {
+  flex: 1;
+  background: #c1f52b;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #000;
+  min-height: 60px;
+}
+.menu-item i {
+  font-size: 18px;
+}
+
+/* JUDUL */
+h2 {
+  font-size: 18px;
+  margin: 15px 0 10px;
+}
+
+/* GRID PRODUK */
+.produk-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+/* CARD PRODUK */
+.produk-card {
+  background:#1e2230;
+  border-radius:12px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.produk-card img {
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+.produk-body {
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.produk-body h3 {
+  font-size:14px;
+  font-weight:bold;
+  color:#fff;
+}
+.produk-body .harga {
+  font-size:16px;
+  font-weight:bold;
+  color:#c1f52b;
+  margin:4px 0 6px;
+}
+.produk-body p {
+  font-size:12px;
+  color:#ccc;
+  margin:0;
+}
+.beli-btn {
+  margin-top:8px;
+  background:#c1f52b;
+  color:#000;
+  border:none;
+  padding:10px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:bold;
+  cursor:pointer;
+  width:100%;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1e2230;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 6px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+nav a {
+  flex: 1;
+  color: #aaa;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+nav a i {
+  font-size: 18px;
+}
+nav a.active,
+nav a:hover {
+  color: #c1f52b;
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 999;
+}
+.popup.show {
+  visibility: visible;
+  opacity: 1;
+}
+.popup-content {
+  background: #1e2230;
+  color: #c1f52b;
+  padding: 25px 30px;
+  text-align: center;
+  border-radius: 12px;
+  max-width: 350px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  position: relative;
+}
+.popup-content h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.popup-content p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.btn-join {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: #c1f52b;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.btn-close {
+  display: block;
+  font-size: 22px;
+  color: #c1f52b;
+  cursor: pointer;
+  margin: 0 auto 10px auto;
+  user-select: none;
+}
+.btn-snooze {
+  display: block;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 auto;
+}
+

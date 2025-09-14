@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="dompet.css">
+  <style>
+    /* Ticker container */
+    #tickerContainer {
+      overflow: hidden;
+      white-space: nowrap;
+      background: #c1f52b;
+      color: #000;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    #tickerText {
+      display: inline-block;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">Home</div>
+
+  <!-- POPUP AJAKAN BERGABUNG -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h2>Selamat Datang di Cuandigital!</h2>
+      <p>Platform ini merupakan sebuah platform digital yang dapat memberikan keuntungan yang terpercaya dan menguntungkan untuk seluruh penggunanya.</p>
+      <span id="popup-close" class="btn-close">×</span>
+    </div>
+  </div>
+
+  <!-- WRAPPER -->
+  <div class="wrapper">
+
+    <!-- SLIDER -->
+    <div class="slider">
+      <div class="slides">
+        <img src="slides1.jpg" alt="Slide 1">
+        <img src="slides2.jpg" alt="Slide 2">
+        <img src="slides3.jpg" alt="Slide 3">
+      </div>
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- TICKER -->
+    <div id="tickerContainer">
+      <span id="tickerText"></span>
+    </div>
+
+    <!-- MENU AKSI -->
+    <div class="menu-aksi">
+      <a href="deposit.html" class="menu-item"><i class="fa fa-credit-card"></i> Deposit</a>
+      <a href="penarikan.html" class="menu-item"><i class="fa fa-wallet"></i> Penarikan</a>
+      <a href="hadiah.html" class="menu-item"><i class="fa fa-gift"></i>Hadiah</a>
+    </div>
+
+    <!-- DAFTAR PRODUK -->
+    <h2>Produk Tersedia</h2>
+    <div class="produk-grid">
+
+      <!-- Produk 1 -->
+      <div class="produk-card">
+        <img src="plan1.jpg" alt="Produk 1">
+        <div class="produk-body">
+          <h3>INC II KH UUQ</h3>
+          <p class="harga">Rp150.000</p>
+          <p>Hasil Harian: Rp100.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp300.000</p>
+          <p>Bonus: Rp15.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 2 -->
+      <div class="produk-card">
+        <img src="plan2.jpg" alt="Produk 2">
+        <div class="produk-body">
+          <h3>INC OO DG UUQ</h3>
+          <p class="harga">Rp200.000</p>
+          <p>Hasil Harian Rp150.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp450.000</p>
+          <p>Bonus: Rp20.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 3 -->
+      <div class="produk-card">
+        <img src="plan3.jpg" alt="Produk 3">
+        <div class="produk-body">
+          <h3>INC AA JK UUQ</h3>
+          <p class="harga">Rp300.000</p>
+          <p>Hasil Harian: Rp250.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp750.000</p>
+          <p>Bonus: Rp30.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 4 -->
+      <div class="produk-card">
+        <img src="plan4.jpg" alt="Produk 4">
+        <div class="produk-body">
+          <h3>INC CC TR UUQ</h3>
+          <p class="harga">Rp450.000</p>
+          <p>Hasil Harian: Rp400.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp1.200.000</p>
+          <p>Bonus: Rp45.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 5 -->
+      <div class="produk-card">
+        <img src="plan5.jpg" alt="Produk 5">
+        <div class="produk-body">
+          <h3>INC GG BD UUQ</h3>
+          <p class="harga">Rp500.000</p>
+          <p>Hasil Harian: Rp450.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp1.350.000</p>
+          <p>Bonus: Rp50.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 6 -->
+      <div class="produk-card">
+        <img src="plan6.jpg" alt="Produk 6">
+        <div class="produk-body">
+          <h3>INC TT OP UUQ</h3>
+          <p class="harga">Rp650.000</p>
+          <p>Hasil Harian: Rp600.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp1.800.000</p>
+          <p>Bonus: Rp65.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 7 -->
+      <div class="produk-card">
+        <img src="plan7.jpg" alt="Produk 7">
+        <div class="produk-body">
+          <h3>INC RR ZX UUQ</h3>
+          <p class="harga">Rp1.000.000</p>
+          <p>Hasil Harian: Rp900.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp2.700.000</p>
+          <p>Bonus: Rp100.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 8 -->
+      <div class="produk-card">
+        <img src="plan8.jpg" alt="Produk 8">
+        <div class="produk-body">
+          <h3>INC YY ES UUQ</h3>
+          <p class="harga">Rp2.000.000</p>
+          <p>Hasil Harian: Rp1.800.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp5.400.000</p>
+          <p>Bonus: Rp200.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 9 -->
+      <div class="produk-card">
+        <img src="plan9.jpg" alt="Produk 9">
+        <div class="produk-body">
+          <h3>INC KK LD UUQ</h3>
+          <p class="harga">Rp5.000.000</p>
+          <p>Hasil Harian: Rp4.500.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp13.500.000</p>
+          <p>Bonus: Rp500.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 10 -->
+      <div class="produk-card">
+        <img src="plan10.jpg" alt="Produk 10">
+        <div class="produk-body">
+          <h3>INC VV FX UUQ</h3>
+          <p class="harga">Rp10.000.000</p>
+          <p>Hasil Harian: Rp9.000.000</p>
+          <p>Masa Kontrak: 3 hari</p>
+          <p>Total Hasil: Rp27.000.000</p>
+          <p>Bonus: Rp1.000.000</p>
+          <button class="beli-btn">Beli Sekarang</button>
+        </div>
+      </div>
+
+    </div> <!-- /produk-grid -->
+
+  </div> <!-- /wrapper -->
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="dompet.html" class="active">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a href="order.html">
+      <i class="fa-solid fa-chart-line"></i>
+      <span>Invest</span>
+    </a>
+    <a href="team.html">
+      <i class="fa-solid fa-users"></i>
+      <span>Team</span>
+    </a>
+    <a href="profil.html">
+      <i class="fa-solid fa-address-card"></i>
+      <span>Profil</span>
+    </a>
+  </nav>
+
+  <script>
+    
+    
+    // =======================
+    // Ticker Animasi Per Pengguna
+    // =======================
+    const users = [
+      "817****9919 berhasil membeli produk Rp1.000.000",
+      "821****7623 berhasil membeli produk Rp500.000",
+      "858****3345 berhasil membeli produk Rp2.000.000",
+      "819****1122 berhasil membeli produk Rp5.000.000",
+      "823****5566 berhasil membeli produk Rp10.000.000",
+      "831****8860 berhasil membeli produk Rp650.000",
+      "882****78800 berhasil membeli produk Rp450.000",
+      "811****776 berhasil membeli produk Rp2.000.000",
+    ];
+
+    const tickerContainer = document.getElementById("tickerContainer");
+    const tickerText = document.getElementById("tickerText");
+    let index = 0;
+    let pos = tickerContainer.offsetWidth;
+    const speed = 1; // pixel per frame
+
+    function animateTicker() {
+      tickerText.style.transform = `translateX(${pos}px)`;
+      pos -= speed;
+      if (pos < -tickerText.offsetWidth) {
+        index = (index + 1) % users.length;
+        tickerText.textContent = "Selamat kepada pengguna " + users[index];
+        pos = tickerContainer.offsetWidth;
+      }
+      requestAnimationFrame(animateTicker);
+    }
+
+    tickerText.textContent = "Selamat kepada pengguna " + users[index];
+    animateTicker();
+
+    // =======================
+    // Slider Swipe
+    // =======================
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelector('.slides');
+    const dots = document.querySelectorAll('.dot');
+    let slideIndex = 0;
+
+    function showSlide(i) {
+      slideIndex = i;
+      slides.style.transform = `translateX(${-i * 100}%)`;
+      dots.forEach((dot, idx) => dot.classList.toggle('active', idx === i));
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
+
+    let startX = 0;
+    slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    slider.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      if (endX < startX - 50 && slideIndex < dots.length - 1) showSlide(slideIndex + 1);
+      else if (endX > startX + 50 && slideIndex > 0) showSlide(slideIndex - 1);
+    });
+
+    // =======================
+    // Popup 5 menit
+    // =======================
+    window.addEventListener('load', () => {
+      const popup = document.getElementById('popup');
+      const closeBtn = document.getElementById('popup-close');
+      const popupTime = localStorage.getItem('popupSnooze');
+      const now = new Date().getTime();
+
+      if (!popupTime || now > parseInt(popupTime)) {
+        setTimeout(() => popup.classList.add('show'), 1000);
+      }
+
+      closeBtn.addEventListener('click', () => popup.classList.remove('show'));
+    });
+    
+    
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembayaran</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial,sans-serif;background:#292d3c;color:#fff;padding-top:55px;padding-bottom:80px;}
+.header{display:flex;justify-content:center;align-items:center;padding:12px 0;width:100%;background:#1e2230;position:fixed;top:0;left:0;z-index:1000;color:#c1f52b;font-weight:bold;font-size:17px;border-bottom:2px solid #1e2230;}
+.header .back-btn{position:absolute;left:15px;font-size:22px;color:#c1f52b;text-decoration:none;}
+.bayar-wrapper{padding:15px;}
+.pembayaran-box{background:#1e2230;border-radius:12px;padding:20px;text-align:center;margin:20px 0;}
+.pembayaran-box h2{font-size:16px;margin-bottom:12px;}
+.qris-img{width:220px;margin:10px auto;display:block;}
+.nominal-box{background:#292d3c;padding:12px;border-radius:8px;margin:15px 0;}
+.nominal-box p{margin:0;font-size:13px;color:#ccc;}
+.nominal-box h3{font-size:18px;font-weight:bold;color:#c1f52b;margin:5px 0;}
+.copy-btn,.konfirmasi-btn{background:#c1f52b;color:#000;font-weight:bold;border:none;padding:10px 15px;border-radius:8px;cursor:pointer;margin-top:10px;width:100%;}
+.konfirmasi-btn{margin-top:15px;}
+.instruksi{font-size:13px;color:#ccc;margin-top:10px;line-height:1.5;text-align:left;}
+.instruksi ol{padding-left:20px;}
+.instruksi li{margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="deposit.html" class="back-btn">&#8592;</a>
+  Pembayaran
+</div>
+
+<div class="bayar-wrapper">
+  <div class="pembayaran-box">
+    <h2>Silakan Scan QRIS untuk Membayar</h2>
+    <img src="bayar.jpg" alt="QRIS" class="qris-img">
+
+    <div class="nominal-box">
+      <p>Jumlah yang harus dibayar:</p>
+      <h3 id="nominal">Rp 0</h3>
+      <button class="copy-btn" onclick="copyNominal()">Salin Jumlah</button>
+    </div>
+
+    <!-- Instruksi Langkah Pembayaran -->
+    <div class="instruksi">
+      <p><strong>Langkah-langkah Pembayaran:</strong></p>
+      <ol>
+        <li>Scan QRIS di atas menggunakan aplikasi pembayaran Anda.</li>
+        <li>Masukkan nominal pembayaran sesuai yang tertera.</li>
+        <li>Pastikan pembayaran berhasil sebelum melanjutkan.</li>
+        <li>Setelah pembayaran berhasil, reload halaman tunggu 1-30 menit saldo akan otomatis masuk ke akun Anda.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const jumlah = parseInt(params.get("jumlah")) || 0;
+
+function formatRupiah(angka){
+  return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");
+}
+document.getElementById("nominal").innerText = formatRupiah(jumlah);
+
+function copyNominal(){
+  navigator.clipboard.writeText(jumlah).then(()=>{alert("Nominal berhasil disalin!");});
+}
+
+function konfirmasiBayar(){
+  if(jumlah > 0){
+    let saldo = parseInt(localStorage.getItem("saldo")) || 0;
+    saldo += jumlah;
+    localStorage.setItem("saldo", saldo);
+  }
+  window.location.href = "profil.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riwayat Transaksi</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background:#292d3c;
+    color:#fff;
+    min-height:100%;
+    padding-bottom:80px;
+}
+
+.header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:12px 0;
+    width:100%;
+    background:#1e2230;
+    position:relative;
+    color:#c1f52b;
+    font-weight:bold;
+    font-size:17px;
+    border-bottom:2px solid #1e2230;
+}
+.header .back-btn { 
+    position:absolute; 
+    left:15px; 
+    font-size:22px; 
+    color:#c1f52b; 
+    text-decoration:none; 
+}
+
+.container {
+    padding:0 8px; /* padding container tidak mempengaruhi header */
+}
+
+.tab-section {
+    display:flex; justify-content:center; align-items:center;
+    background:#1c1f2b; padding:5px; border-radius:20px; margin:15px 0;
+}
+.tab-button {
+    flex:1; text-align:center; padding:8px 0; border-radius:20px;
+    color:#c1f52b; font-weight:bold; margin:0 3px; transition:0.3s; cursor:pointer; background:#1c1f2b;
+}
+.tab-button.active { background:#c1f52b; color:black; }
+
+.record-list { padding:0 5px; }
+
+.record-card {
+    background:#1c1f2b; border-radius:12px; padding:15px; margin-bottom:15px;
+}
+.record-card h2 { color:#c1f52b; margin:0 0 10px 0; font-size:22px; }
+.record-details .detail-row { display:flex; justify-content:space-between; font-size:14px; margin-bottom:5px; color:#aaa; }
+.detail-row .label { color:#888; }
+.detail-row .value { color:#c1f52b; font-weight:bold; } 
+.detail-row .result { color:#c1f52b; font-weight:bold; } 
+
+.footer { text-align:center; font-size:12px; color:#c1f52b; margin:15px 0; }
+
+nav {
+    position:fixed; bottom:0; left:0; right:0;
+    background:#1e2230; display:flex; justify-content:space-around;
+    padding:8px 0 6px; box-shadow:0 -2px 5px rgba(0,0,0,0.3);
+}
+nav a { flex:1; color:#aaa; text-align:center; text-decoration:none; font-size:11px; display:flex; flex-direction:column; align-items:center; gap:2px; }
+nav a i { font-size:18px; }
+nav a.active, nav a:hover { color:#c1f52b; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <a href="profil.html" class="back-btn">&#8592;</a>
+    Riwayat Transaksi
+</div>
+
+<div class="container">
+    <div class="tab-section">
+        <div class="tab-button active" data-type="all">Semua</div>
+        <div class="tab-button" data-type="topup">Isi Ulang</div>
+        <div class="tab-button" data-type="withdraw">Penarikan</div>
+    </div>
+
+    <div class="record-list" id="recordList"></div>
+
+    <div class="footer"></div>
+</div>
+
+
+<script>
+// Data Penarikan (pajak 10%)
+const withdrawRecords = [
+    { amount:16529000, date:"12 Jul 25 09:03", result:"Sukses" },
+    { amount:14408030, date:"10 Jul 25 10:41", result:"Sukses" },
+    { amount:18808500, date:"10 Jul 25 10:41", result:"Sukses" }
+];
+
+// Data Isi Ulang (pajak 0)
+const topupRecords = [
+    { amount:5000000, date:"09 Jul 25 14:12", result:"Sukses" },
+    { amount:3200000, date:"08 Jul 25 16:20", result:"Sukses" },
+    { amount:7500000, date:"07 Jul 25 11:50", result:"Sukses" }
+];
+
+const allRecords = [...withdrawRecords, ...topupRecords];
+const recordList = document.getElementById('recordList');
+const tabs = document.querySelectorAll('.tab-button');
+
+function renderRecords(type) {
+    recordList.innerHTML = '';
+    let recordsToRender = [];
+    if(type==='withdraw') recordsToRender = withdrawRecords;
+    else if(type==='topup') recordsToRender = topupRecords;
+    else recordsToRender = allRecords;
+
+    recordsToRender.forEach(r=>{
+        const card = document.createElement('div');
+        card.className = 'record-card';
+        let isWithdraw = withdrawRecords.includes(r);
+        let label = isWithdraw ? 'Jumlah Penarikan' : 'Jumlah Isi Ulang';
+        let tax = isWithdraw ? Math.round(r.amount*0.1) : 0;
+        card.innerHTML = `
+            <h2>Rp${r.amount.toLocaleString()}.00</h2>
+            <div class="record-details">
+                <div class="detail-row"><span class="label">${label}</span><span class="value">Rp${(r.amount - tax).toLocaleString()}</span></div>
+                <div class="detail-row"><span class="label">Pajak</span><span class="value">Rp${tax.toLocaleString()}</span></div>
+                <div class="detail-row"><span class="label">Waktu Pengiriman</span><span class="value">${r.date}</span></div>
+                <div class="detail-row"><span class="label">Hasil</span><span class="result">${r.result}</span></div>
+            </div>
+        `;
+        recordList.appendChild(card);
+    });
+}
+
+tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+        tabs.forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        renderRecords(tab.dataset.type);
+    });
+});
+
+renderRecords('all');
+</script>
+
+</body>
+</html>

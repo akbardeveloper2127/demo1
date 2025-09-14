@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* RESET */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #292d3c;
+    color: #fff;
+    min-height: 100%;
+    padding-bottom: 80px; /* ruang navbar */
+}
+
+/* CONTAINER */
+.container {
+    padding: 0 8px;
+}
+
+/* USER INFO */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+.user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #292d3c;
+}
+.user-info .details {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.user-info .details .name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #c1f52b;
+    margin: 0;
+}
+.user-info .details .phone,
+.user-info .details .email {
+    font-size: 14px;
+    color: #aaa;
+    margin: 0;
+}
+
+/* BALANCE CARD */
+.balance-card {
+    background: url('plan1.jpg') no-repeat center center;
+    background-size: cover;
+    color: black;
+    border-radius: 12px;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+}
+.balance-card .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.balance-card .amount {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+}
+.balance-card .profit {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+.deposit-btn {
+    background-color: #c1f52b;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    animation: wiggle 1s infinite;
+}
+
+/* QUICK ACTIONS */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.action-item {
+    background: #c1f52b;
+    padding: 15px 5px;
+    border-radius: 8px;
+    color: black;
+    font-size: 12px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.action-item:hover {
+    background: #b0e224;
+}
+.action-item .icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+/* CHECK-IN */
+.check-in-card {
+    display: flex;
+    background: #1c1f2b;
+    border-radius: 12px;
+    padding: 15px;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.check-in-bonus {
+    background: #c1f52b;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+.check-in-text {
+    flex-grow: 1;
+}
+.check-in-text h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #c1f52b;
+}
+.check-in-text p {
+    margin: 0;
+    font-size: 12px;
+    color: #aaa;
+}
+.claim-btn {
+    background: #c1f52b;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* MENU HISTORY */
+.menu-history {
+    margin-bottom: 20px;
+}
+.menu-history a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1c1f2b;
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+.menu-history a:hover {
+    background: #2a2d42;
+}
+.menu-history a i:first-child {
+    margin-right: 10px;
+    color: #c1f52b;
+}
+.menu-history a span {
+    flex-grow: 1;
+    text-align: left;
+}
+.menu-history a i:last-child {
+    color: #c1f52b;
+}
+
+/* NAVIGATION */
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1e2230;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 6px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+}
+nav a {
+    flex: 1;
+    color: #aaa;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+nav a i {
+    font-size: 18px;
+}
+nav a.active,
+nav a:hover {
+    color: #c1f52b;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- USER INFO -->
+    <div class="user-info">
+        <img src="plan1.jpg" alt="Foto Profil">
+        <div class="details">
+            <p class="name" id="userName"></p>
+            <p class="phone" id="userPhone"></p>
+            <p class="email" id="userEmail"></p>
+        </div>
+    </div>
+
+    <!-- BALANCE CARD -->
+    <div class="balance-card">
+        <div class="row"><span>Saldo Akun</span></div>
+        <div class="row"><span class="amount" id="saldo">Rp0</span></div>
+        <div class="row" style="align-items:center; justify-content:space-between;">
+            <span style="display:flex; flex-direction:column; gap:8px;">
+                <span>Saldo Deposit</span>
+                <span class="profit" id="deposit">Rp0</span>
+            </span>
+            <a href="deposit.html" class="deposit-btn">DEPOSIT</a>
+        </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions">
+        <a href="deposit.html" class="action-item">
+            <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
+            Deposit
+        </a>
+        <a href="penarikan.html" class="action-item">
+            <div class="icon"><i class="fa-solid fa-wallet"></i></div>
+            Penarikan
+        </a>
+        <a href="bagikan.html" class="action-item">
+            <div class="icon"><i class="fa-solid fa-share-nodes"></i></div>
+            Undang
+        </a>
+        <a href="hadiah.html" class="action-item">
+            <div class="icon"><i class="fa-solid fa-gift"></i></div>
+            Hadiah
+        </a>
+    </div>
+
+    <!-- CHECK-IN -->
+    <div class="check-in-card">
+        <div class="check-in-bonus">
+            <p>Rp500</p>
+        </div>
+        <div class="check-in-text">
+            <h4>Check-in Harian</h4>
+            <p>Dapatkan setiap 24 jam</p>
+            <p>Senang melihat Anda hari ini</p>
+        </div>
+        <button class="claim-btn" id="checkinBtn">KLAIM</button>
+    </div>
+
+    <!-- MENU HISTORY -->
+    <div class="menu-history">
+        <a href="semuariwayat.html"><i class="fa-solid fa-list"></i><span>Riwayat Transaksi</span><i class="fa-solid fa-angle-right"></i></a>
+        <a href="#"><i class="fa-solid fa-download"></i><span>Unduh Aplikasi</span><i class="fa-solid fa-angle-right"></i></a>
+        <a href="about.html"><i class="fa-solid fa-info-circle"></i><span>Tentang Kami</span><i class="fa-solid fa-angle-right"></i></a>
+        <a href="login.html" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i><span>Keluar Akun</span><i class="fa-solid fa-angle-right"></i></a>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+    <a href="dompet.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="order.html"><i class="fa-solid fa-chart-line"></i><span>Invest</span></a>
+    <a href="team.html"><i class="fa-solid fa-users"></i><span>Team</span></a>
+    <a href="profil.html" class="active"><i class="fa-solid fa-address-card"></i><span>Profil</span></a>
+</nav>
+
+<script>
+// Fungsi format Rupiah
+function formatRupiah(num){
+    return 'Rp' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Ambil user aktif dari localStorage
+let userData = JSON.parse(localStorage.getItem('activeUser') || '{}');
+
+// Tampilkan data user
+document.getElementById("userName").textContent = userData.fullname || "Tamu";
+document.getElementById("userPhone").textContent = userData.phone || "-";
+document.getElementById("userEmail").textContent = userData.email || "-";
+
+// Tampilkan saldo & deposit
+let saldo = userData.saldo || 0;
+document.getElementById("saldo").textContent = formatRupiah(saldo);
+
+let deposit = userData.deposit || 0;
+document.getElementById("deposit").textContent = formatRupiah(deposit);
+
+// CHECK-IN 24 JAM
+const checkinBtn = document.getElementById('checkinBtn');
+let lastCheckin = userData.lastCheckin ? new Date(userData.lastCheckin) : null;
+
+function isCheckinAvailable(){
+    if(!lastCheckin) return true;
+    const now = new Date();
+    const diff = now - lastCheckin;
+    return diff >= 24*60*60*1000; // 24 jam
+}
+
+// Set tombol check-in sesuai status
+if(!isCheckinAvailable()){
+    checkinBtn.disabled = true;
+    checkinBtn.style.opacity = 0.6;
+}
+
+checkinBtn.addEventListener('click', ()=>{
+    if(isCheckinAvailable()){
+        saldo += 500;
+        userData.saldo = saldo;
+        userData.lastCheckin = new Date();
+        localStorage.setItem('activeUser', JSON.stringify(userData));
+
+        // Update array users juga
+        let allUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        const idx = allUsers.findIndex(u => u.phone === userData.phone);
+        if(idx !== -1){
+            allUsers[idx] = userData;
+            localStorage.setItem('users', JSON.stringify(allUsers));
+        }
+
+        document.getElementById("saldo").textContent = formatRupiah(saldo);
+        checkinBtn.disabled = true;
+        checkinBtn.style.opacity = 0.6;
+        alert('Check-in berhasil! Saldo bertambah Rp500');
+    }
+});
+// Ambil user aktif dari localStorage
+const activeUser = JSON.parse(localStorage.getItem('activeUser') || 'null');
+
+// Kalau belum login, redirect ke login.html
+if(!activeUser){
+    window.location.href = "login.html";
+}
+// LOGOUT
+document.getElementById('logoutBtn').addEventListener('click', ()=>{
+    localStorage.removeItem('activeUser');
+    window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>

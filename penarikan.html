@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penarikan</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background:#292d3c;
+    color:#fff;
+    min-height:100%;
+    padding-bottom:80px;
+}
+
+/* HEADER */
+.header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:12px 0;
+    width:100%;
+    background: #1e2230;
+    position:relative;
+    color: #c1f52b;
+    font-weight:bold;
+    font-size:17px;
+    border-bottom:2px solid #1e2230;
+}
+.header .back-btn { 
+    position:absolute; 
+    left:15px; 
+    font-size:22px; 
+    color:#c1f52b; 
+    text-decoration:none; 
+}
+
+/* BANNER */
+.banner img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+
+/* KOTAK KONTEN */
+.content-box {
+    background:#292d3c;
+    border-radius: 20px 20px 0 0;
+    margin-top: -40px;
+    padding: 20px 15px 120px;
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+}
+
+/* SALDO BOX */
+.saldo-box {
+    background: linear-gradient(135deg, #c1f52b, #a3d920, #1e2230);
+    padding:20px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+.saldo-info {
+    display:flex;
+    flex-direction:column;
+}
+.saldo-label {
+    font-size:13px;
+    color: black;
+    opacity:0.8;
+    margin-bottom:5px;
+}
+.saldo-amount {
+    font-size:22px;
+    font-weight:bold;
+    color: black;
+}
+.saldo-box i {
+    font-size:32px;
+    color: #c1f52b;
+    opacity:0.9;
+}
+
+/* FORM INPUT */
+.form-group {
+    margin-bottom:15px;
+}
+.form-group label {
+    display:block;
+    margin-bottom:6px;
+    font-size:14px;
+    font-weight:bold;
+    color:#c1f52b;
+}
+
+.form-group select {
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #1e2230;
+  background:#1e2230;
+  color:#c1f52b;
+  font-size:15px;
+  appearance:none;
+}
+
+.form-group input {
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #1e2230;
+    background:#1e2230;
+    color:#c1f52b;
+    font-size:15px;
+}
+
+/* Input manual */
+.input-group {
+    display:flex; align-items:center; margin-bottom:15px;
+}
+.input-group span {
+    background:#1e2230; 
+    padding:12px 15px; 
+    border-top-left-radius:10px; 
+    border-bottom-left-radius:10px;
+    color:#c1f52b; 
+    font-weight:bold;
+}
+.input-group input {
+    flex:1; 
+    padding:12px; 
+    border:1px solid #1e2230;
+    background:#1e2230;
+    color:#c1f52b;
+    border-radius:0 10px 10px 0;
+    font-size:16px;
+}
+
+/* Tombol konfirmasi */
+.action-btn {
+  display:block;
+  width:100%;
+  background:#c1f52b;
+  color:#000;
+  text-align:center;
+  font-weight:bold;
+  padding:14px;
+  border-radius:10px;
+  margin-top:15px;
+  text-decoration:none;
+  font-size:16px;
+  border:none;
+  cursor:pointer;
+}
+
+.instructions {
+    background:#1e2230; 
+    border-radius:12px; 
+    padding:15px 18px;
+    font-size:13px; 
+    color:#fff;
+    margin-top:15px;
+}
+.instructions ol {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+.instructions li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <a href="dompet.html" class="back-btn">&#8592;</a>
+    Penarikan
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+    <img src="slides3.jpg" alt="Penarikan Banner">
+</div>
+
+<!-- KONTEN PENARIKAN -->
+<div class="content-box">
+
+    <!-- SALDO YANG DAPAT DITARIK -->
+    <div class="saldo-box">
+        <div class="saldo-info">
+            <div class="saldo-label">Saldo Tersedia</div>
+            <div id="saldoText" class="saldo-amount">Rp0</div>
+        </div>
+        <i class="fas fa-wallet"></i>
+    </div>
+
+<!-- FORM AKUN BANK -->
+<div class="form-group">
+  <label>Pilih Bank / E-Wallet</label>
+  <select id="bank">
+    <option value="">-- Pilih Bank / E-Wallet --</option>
+    <!-- BANK -->
+    <option value="BCA">Bank Central Asia (BCA)</option>
+    <option value="BRI">Bank Rakyat Indonesia (BRI)</option>
+    <option value="BNI">Bank Negara Indonesia (BNI)</option>
+    <option value="Mandiri">Bank Mandiri</option>
+    <option value="CIMB">CIMB Niaga</option>
+    <option value="Danamon">Bank Danamon</option>
+    <option value="Permata">Bank Permata</option>
+    <option value="Maybank">Maybank Indonesia</option>
+    <option value="OCBC">OCBC NISP</option>
+    <option value="Panin">Bank Panin</option>
+    <option value="BTN">Bank Tabungan Negara (BTN)</option>
+    <option value="BSI">Bank Syariah Indonesia (BSI)</option>
+    <option value="Mega">Bank Mega</option>
+    <option value="Bukopin">Bank Bukopin</option>
+    <option value="BTPN">Bank BTPN / Jenius</option>
+    <option value="Bank Lainnya">Bank Lainnya</option>
+    <!-- E-WALLET -->
+    <option value="Gopay">GoPay</option>
+    <option value="OVO">OVO</option>
+    <option value="Dana">DANA</option>
+    <option value="LinkAja">LinkAja</option>
+    <option value="ShopeePay">ShopeePay</option>
+    <option value="Sakuku">Sakuku (BCA)</option>
+    <option value="Kredivo">Kredivo</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label>Nomor Rekening / Nomor HP</label>
+  <input type="text" id="rekening" placeholder="Masukkan nomor rekening atau nomor HP e-wallet">
+</div>
+
+<div class="form-group">
+  <label>Nama Pemilik Rekening / Akun</label>
+  <input type="text" id="pemilik" placeholder="Masukkan nama pemilik rekening / akun">
+</div>
+
+    <!-- Input manual -->
+    <div class="input-group">
+        <span>Rp</span>
+        <input type="number" id="manualAmount" placeholder="Masukkan jumlah penarikan">
+    </div>
+
+    <!-- Tombol Tarik -->
+    <button id="withdrawBtn" class="action-btn">Tarik Sekarang</button>
+
+    <!-- Instruksi -->
+    <div class="instructions">
+        <p><strong>Instruksi Penarikan:</strong></p>
+        <ol>
+            <li>Jumlah penarikan minimum adalah Rp50.000.</li>
+            <li>Pastikan data akun bank di atas diisi dengan benar.</li>
+            <li>Penarikan akan diproses dalam 1x24 jam sesuai kebijakan platform.</li>
+            <li>Jika dana belum masuk lebih dari 24 jam, segera hubungi layanan pelanggan.</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+// format Rupiah
+function formatRupiah(angka){
+  return "Rp" + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");
+}
+
+let saldo = parseInt(sessionStorage.getItem("saldo")) || ;
+document.getElementById("saldoText").textContent = formatRupiah(saldo);
+
+// tombol tarik
+document.getElementById("withdrawBtn").addEventListener("click", ()=>{
+  let bank = document.getElementById("bank").value.trim();
+  let rekening = document.getElementById("rekening").value.trim();
+  let pemilik = document.getElementById("pemilik").value.trim();
+  let jumlah = parseInt(document.getElementById("manualAmount").value);
+
+  if(!bank || !rekening || !pemilik){
+    alert("Mohon lengkapi data akun bank terlebih dahulu.");
+    return;
+  }
+  if(!jumlah || jumlah < 50000){
+    alert("Minimal penarikan Rp50.000");
+    return;
+  }
+  if(jumlah > saldo){
+    alert("Saldo tidak mencukupi!");
+    return;
+  }
+
+  saldo -= jumlah;
+  sessionStorage.setItem("saldo", saldo);
+  alert("Penarikan berhasil!\nDana akan ditransfer ke rekening: " + bank + " - " + rekening + " a.n " + pemilik);
+  window.location.href = "profil.html";
+});
+</script>
+
+</body>
+</html>

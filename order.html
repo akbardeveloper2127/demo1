@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investasi</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: Arial, sans-serif;
+  background:#292d3c;
+  color:#fff;
+  min-height:100vh;
+  padding-bottom:80px;
+}
+
+/* HEADER */
+.header {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:12px 0;
+  background:#1e2230;
+  position:relative;
+  font-weight:bold;
+  font-size:17px;
+  color:#c1f52b;
+  border-bottom:2px solid #1e2230;
+}
+.header .back-btn {
+  position:absolute;
+  left:15px;
+  font-size:22px;
+  color:#c1f52b;
+  text-decoration:none;
+}
+
+/* KONTEN */
+.content {
+  padding:30px 20px;
+  text-align:center;
+}
+
+/* BOX KOSONG */
+.empty-box {
+  background:#1e2230;
+  padding:30px 20px;
+  border-radius:16px;
+  max-width:400px;
+  margin:40px auto;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+.empty-box i {
+  font-size:50px;
+  color:#c1f52b;
+  margin-bottom:15px;
+}
+.empty-box h3 {
+  font-size:18px;
+  margin-bottom:10px;
+}
+.empty-box p {
+  font-size:14px;
+  opacity:0.8;
+}
+
+/* Tombol ke produk */
+.action-btn {
+  display:inline-block;
+  margin-top:20px;
+  background:#c1f52b;
+  color:#000;
+  padding:12px 20px;
+  border-radius:10px;
+  font-weight:bold;
+  text-decoration:none;
+  transition:0.2s;
+}
+.action-btn:hover {
+  background:#a5d92a;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <a href="dompet.html" class="back-btn">&#8592;</a>
+  Investasi
+</div>
+
+<!-- KONTEN -->
+<div class="content">
+  <div class="empty-box">
+    <i class="fa fa-chart-line"></i>
+    <h3>Belum Ada Investasi Aktif</h3>
+    <p>Anda belum membeli atau mengaktifkan produk apapun. Silahkan beli produk investasi untuk mendapatkan keuntungan.</p>
+    <a href="dompet.html" class="action-btn">Lihat Produk</a>
+  </div>
+</div>
+
+</body>
+</html>

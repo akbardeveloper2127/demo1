@@ -1,0 +1,132 @@
+/* Reset */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  font-family: Arial, sans-serif;
+  background: #292d3c;
+  color: #fff;
+  padding-bottom: 60px;
+}
+
+/* HEADER */
+.header {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:12px 0;              /* rapat, sama dengan deposit */
+    width:100%;
+    background:#c1f52b;
+    position:relative;
+    color:#000;
+    font-weight:bold;
+    font-size:17px;
+    border-bottom:2px solid #b0e224; /* biar konsisten clean */
+}
+
+/* Judul */
+h2 {
+  font-size: 18px;
+  margin: 15px 12px;
+}
+
+/* Grid produk */
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 8px 15px;
+}
+
+/* Card produk */
+.produk-card {
+  background: #1e2230;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gambar full lebar */
+.produk-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Konten */
+.produk-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Judul produk */
+.produk-body h3 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Harga */
+.produk-body .harga {
+  font-size: 16px;
+  font-weight: bold;
+  color: #c1f52b;
+  margin: 4px 0 6px;
+}
+
+/* Info lainnya */
+.produk-body p {
+  font-size: 12px;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Tombol beli */
+.beli-btn {
+  margin-top: 8px;
+  background: #c1f52b;
+  color: #000;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1e2230;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 6px; /* lebih kecil */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+nav a {
+  flex: 1;
+  color: #aaa;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px; /* teks lebih kecil */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px; /* jarak antara ikon dan teks lebih rapat */
+}
+
+nav a i {
+  font-size: 18px; /* ikon sedikit lebih kecil */
+}
+
+nav a.active,
+nav a:hover {
+  color: #c1f52b;
+}
