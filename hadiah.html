@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadiah Bonus</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family: Arial, sans-serif; background:#292d3c; color:#fff; min-height:100%; padding-bottom:80px; }
+.header { display:flex; justify-content:center; align-items:center; padding:12px 0; width:100%; background:#1e2230; position:relative; color:#c1f52b; font-weight:bold; font-size:17px; }
+.header .back-btn { position:absolute; left:15px; font-size:22px; color:#c1f52b; text-decoration:none; }
+.banner { width:100%; height:220px; position: relative; }
+.banner img { width:100%; height:100%; object-fit:cover; display:block; }
+.content-box { background:#292d3c; border-radius:20px 20px 0 0; margin-top:-50px; padding:20px 15px 120px; max-width:600px; margin-left:auto; margin-right:auto; box-shadow:0 -4px 10px rgba(0,0,0,0.2); position: relative; z-index:1; }
+.form-group { margin-bottom:15px; }
+.form-group label { display:block; margin-bottom:6px; font-size:14px; font-weight:bold; color:#c1f52b; }
+.form-group input { width:100%; padding:12px; border-radius:8px; border:1px solid #1e2230; background:#1e2230; color:#c1f52b; font-size:15px; }
+.claim-btn { display:block; width:100%; background:#c1f52b; color:#000; text-align:center; font-weight:bold; padding:14px; border-radius:10px; margin-top:15px; text-decoration:none; font-size:16px; border:none; cursor:pointer; }
+.claim-btn:hover { background:#a5d92b; }
+.bonus-history { margin-top:20px; }
+.bonus-history h4 { color:#c1f52b; margin-bottom:12px; font-size:16px; font-weight:bold; }
+.bonus-history ul { list-style:none; padding-left:0; }
+.bonus-history li { background:#1e2230; border-left:4px solid #c1f52b; padding:12px 14px; border-radius:8px; margin-bottom:10px; display:flex; flex-direction:column; gap:4px; font-size:14px; }
+.bonus-history li .code { font-weight:bold; color:#c1f52b; }
+.bonus-history li .amount { font-weight:bold; color:#aaa; }
+.bonus-history li .date { font-size:12px; color:#aaa; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <a href="profil.html" class="back-btn">&#8592;</a>
+    Hadiah Bonus
+</div>
+
+<div class="banner">
+    <img src="plan3.jpg" alt="Hadiah Bonus Banner">
+</div>
+
+<div class="content-box">
+    <div class="form-group">
+        <label>Masukkan Kode Bonus</label>
+        <input type="text" id="bonusCode" placeholder="Masukkan kode di sini">
+    </div>
+    <button class="claim-btn" id="claimBonusBtn">Klaim Bonus</button>
+
+    <div class="bonus-history">
+        <h4>Riwayat Pengambilan Bonus</h4>
+        <ul id="bonusHistory"></ul>
+    </div>
+</div>
+
+<script>
+// Ambil user aktif
+let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+if(!activeUser){
+    alert("Tidak ada akun aktif!");
+    window.location.href = "login.html";
+}
+
+// Ambil kode bonus dari admin panel (hadiahadmin.html)
+let bonusData = JSON.parse(localStorage.getItem('bonusCodes') || '[]');
+
+// Element
+const claimBtn = document.getElementById('claimBonusBtn');
+const bonusHistory = document.getElementById('bonusHistory');
+
+// Format rupiah
+function formatRupiah(num){
+    return "Rp" + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Pastikan ada history per user
+if(!activeUser.bonusHistory) activeUser.bonusHistory = [];
+
+// Render riwayat
+function renderHistory(){
+    bonusHistory.innerHTML = '';
+    activeUser.bonusHistory.forEach(item=>{
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span class="code">Kode: ${item.code}</span>
+            <span class="amount">Bonus: ${formatRupiah(item.amount)}</span>
+            <span class="date">Tanggal: ${item.date}</span>
+        `;
+        bonusHistory.appendChild(li);
+    });
+}
+renderHistory();
+
+// Event klaim bonus
+claimBtn.addEventListener('click', ()=>{
+    const code = document.getElementById('bonusCode').value.trim().toUpperCase();
+    if(!code){
+        alert('Masukkan kode bonus!');
+        return;
+    }
+
+    // Ambil semua user
+    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    const index = users.findIndex(u => u.email === activeUser.email);
+    if(index === -1){ alert("User tidak ditemukan!"); return; }
+
+    // Pastikan bonusHistory ada
+    if(!users[index].bonusHistory) users[index].bonusHistory = [];
+
+    // Cari kode di bonusData
+const bonusItem = bonusData.find(b=>b.code===code);
+if(!bonusItem){ 
+    alert('Kode tidak valid!'); 
+    return; 
+}
+
+// Cek kalau user ini sudah klaim kode tersebut
+if(users[index].bonusHistory.some(b=>b.code===code)){
+    alert('Kode ini sudah diklaim oleh akun ini!');
+    return;
+}
+
+// Cek stok global (semua user share stok)
+if(bonusItem.stock <= 0){ 
+    alert('Kode ini sudah habis!'); 
+    return; 
+}
+
+    // Update saldo & history
+    users[index].saldo = (users[index].saldo || 0) + bonusItem.amount;
+    users[index].bonusHistory.unshift({
+        code: code,
+        amount: bonusItem.amount,
+        date: new Date().toLocaleString()
+    });
+
+    // Kurangi stok di bonusData dan simpan
+    bonusItem.stock -= 1;
+    localStorage.setItem('bonusCodes', JSON.stringify(bonusData));
+
+    // Simpan semua user
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Update activeUser juga
+    activeUser = users[index];
+    localStorage.setItem('activeUser', JSON.stringify(activeUser));
+
+    renderHistory();
+    document.getElementById('bonusCode').value = '';
+    alert(`Bonus ${formatRupiah(bonusItem.amount)} berhasil ditambahkan ke saldo!`);
+});
+</script>
+
+</body>
+</html>
