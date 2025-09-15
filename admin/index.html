@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Admin</title>
+<style>
+body { font-family: Arial, sans-serif; background:#292d3c; color:#fff; display:flex; justify-content:center; align-items:center; height:100vh; margin:0; }
+.login-box { background:#1e2230; padding:25px; border-radius:12px; width:300px; text-align:center; box-shadow:0 0 10px rgba(0,0,0,0.3); }
+.login-box h2 { margin-bottom:20px; color:#c1f52b; }
+input { width:100%; padding:12px; margin-bottom:15px; border:none; border-radius:8px; background:#292d3c; color:#fff; font-size:15px; }
+button { width:100%; padding:12px; background:#c1f52b; color:#000; font-weight:bold; border:none; border-radius:8px; cursor:pointer; }
+button:hover { background:#a5d92b; }
+.error { color:red; font-size:14px; margin-top:8px; }
+</style>
+</head>
+<body>
+<div class="login-box">
+  <h2>Admin Panel</h2>
+  <input type="password" id="adminPassword" placeholder="Masukkan Sandi Admin">
+  <button onclick="loginAdmin()">Masuk</button>
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<script>
+const ADMIN_PASS = "12345"; // Ganti dengan sandi rahasia kamu
+
+function loginAdmin(){
+    const input = document.getElementById('adminPassword').value;
+    const errorMsg = document.getElementById('errorMsg');
+
+    if(input === ADMIN_PASS){
+        localStorage.setItem("isAdminLoggedIn", "true");
+        window.location.href = "admin.html"; // halaman panel utama
+    } else {
+        errorMsg.textContent = "Sandi salah!";
+    }
+}
+</script>
+</body>
+</html>
